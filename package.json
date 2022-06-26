@@ -1,0 +1,36 @@
+{
+  "name": "backup-dir",
+  "version": "0.1.0",
+  "description": "Simple command line tool to backup and sync folders without footprint",
+  "main": "bin/index.js",
+  "bin": {
+    "backup-dir": "bin/index.js"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cd/backup-dir.git"
+  },
+  "keywords": [
+    "backup",
+    "sync",
+    "tool",
+    "folders",
+    "directories",
+    "copy",
+    "replace",
+    "modified",
+    "cli"
+  ],
+  "author": "Christian Diederich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cd/backup-dir/issues"
+  },
+  "homepage": "https://github.com/cd/backup-dir#readme",
+  "devDependencies": {
+    "jasmine": "^4.2.1"
+  }
+}
