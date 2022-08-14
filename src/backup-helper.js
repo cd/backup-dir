@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const minimatch = require("minimatch");
 
 /**
  * Compare the files and create appropriate instructions.
@@ -18,7 +19,7 @@ function createInstructions(sourceFiles, targetFiles, options) {
     // Delete file or folder
     if (
       options.delete &&
-      !options.doNotDelete.includes(targetFile.name) &&
+      !matchesPattern(targetFile.path, options.doNotDelete) &&
       (!correspondingSourceFile || correspondingSourceFile.isDirectory !== targetFile.isDirectory)
     ) {
       instructions.push({
@@ -33,8 +34,8 @@ function createInstructions(sourceFiles, targetFiles, options) {
       correspondingSourceFile &&
       !correspondingSourceFile.isDirectory &&
       !targetFile.isDirectory &&
-      !options.doNotCopy.includes(correspondingSourceFile.name) &&
-      !options.doNotDelete.includes(targetFile.name) &&
+      !matchesPattern(correspondingSourceFile.path, options.doNotCopy) &&
+      !matchesPattern(targetFile.path, options.doNotDelete) &&
       (!options.onlyCopyIfNewer || correspondingSourceFile.lastModified > targetFile.lastModified)
     ) {
       instructions.push({
@@ -48,7 +49,7 @@ function createInstructions(sourceFiles, targetFiles, options) {
   sourceFiles.forEach((sourceFile) => {
     const correspondingTargetFile = targetFiles.find((e) => e.name === sourceFile.name);
 
-    if (options.doNotCopy.includes(sourceFile.name)) return;
+    if (matchesPattern(sourceFile.path, options.doNotCopy)) return;
 
     if (
       !correspondingTargetFile ||
@@ -80,6 +81,19 @@ function createInstructions(sourceFiles, targetFiles, options) {
   });
 
   return { instructions, directories };
+}
+
+/**
+ * Tests the path against the patterns.
+ * @param {string} path
+ * @param {array<string>} patterns
+ * @returns true if at least one pattern matches
+ */
+function matchesPattern(path, patterns) {
+  for (let i = 0; i < patterns.length; i++) {
+    if (minimatch(path, patterns[i])) return true;
+  }
+  return false;
 }
 
 /**
@@ -168,9 +182,11 @@ async function getFiles(dir) {
   const names = await fs.promises.readdir(dir);
   const out = [];
   for (let i = 0; i < names.length; i++) {
-    const fileStat = await fs.promises.lstat(path.join(dir, names[i]));
+    const filePath = path.join(dir, names[i]);
+    const fileStat = await fs.promises.lstat(filePath);
     out.push({
       name: names[i],
+      path: filePath,
       isDirectory: fileStat.isDirectory(),
       lastModified: fileStat.mtimeMs,
     });

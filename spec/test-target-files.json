@@ -1,61 +1,73 @@
 [
   {
     "name": "1.txt",
+    "path": "test/target/1.txt",
     "isDirectory": false,
     "lastModified": 0
   },
   {
     "name": "2.txt",
+    "path": "test/target/2.txt",
     "isDirectory": false,
     "lastModified": 2000
   },
   {
     "name": "3.txt",
+    "path": "test/target/3.txt",
     "isDirectory": false,
     "lastModified": 1000
   },
   {
     "name": "5.txt",
+    "path": "test/target/5.txt",
     "isDirectory": false,
     "lastModified": 1000
   },
   {
     "name": "dir_1",
+    "path": "test/target/dir_1",
     "isDirectory": true,
     "lastModified": 2000
   },
   {
     "name": "dir_2",
+    "path": "test/target/dir_2",
     "isDirectory": true,
     "lastModified": 1000
   },
   {
     "name": "dir_file_1",
+    "path": "test/target/dir_file_1",
     "isDirectory": false,
     "lastModified": 0
   },
   {
     "name": "dir_file_2",
+    "path": "test/target/dir_file_2",
     "isDirectory": false,
     "lastModified": 1000
   },
   {
     "name": "dir_file_3",
+    "path": "test/target/dir_file_3",
     "isDirectory": false,
     "lastModified": 2000
   },
   {
     "name": "dir_file_4",
+    "path": "test/target/dir_file_4",
     "isDirectory": true,
     "lastModified": 0
   },
   {
     "name": "dir_file_5",
+    "path": "test/target/dir_file_5",
     "isDirectory": true,
     "lastModified": 1000
   },
   {
     "name": "dir_file_6",
+    "path": "test/target/dir_file_6",
     "isDirectory": true,
     "lastModified": 2000
   }

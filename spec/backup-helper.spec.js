@@ -111,7 +111,7 @@ describe("createInstructions", function () {
       target: "test/target",
       onlyCopyIfNewer: false,
       delete: true,
-      doNotCopy: ["2.txt", "4.txt", "dir_file_1"],
+      doNotCopy: ["**/2.txt", "test/src/4.txt", "*/src/dir_file_1"],
       doNotDelete: [],
     });
     expect(result).toEqual({
@@ -142,7 +142,7 @@ describe("createInstructions", function () {
       onlyCopyIfNewer: true,
       delete: true,
       doNotCopy: [],
-      doNotDelete: ["1.txt", "5.txt", "dir_file_4"],
+      doNotDelete: ["**/1.txt", "test/target/5.txt", "*/target/dir_file_4"],
     });
     expect(result).toEqual({
       instructions: [

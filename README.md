@@ -13,18 +13,24 @@ TODO
 
 ## Usage
 
-### Example
+### Examples
 
-Backup your folder with
+Simply backup your folder:
 
 ```bash
 backup-dir C:\my-data E:\backup\my-data
 ```
 
-or test it without risk in a preview first
+Test it without any risk in a preview:
 
 ```bash
 backup-dir C:\my-data E:\backup\my-data --preview
+```
+
+Use of relative paths and multiple options:
+
+```bash
+backup-dir relative/src relative/target --do-not-copy **/*.env **/node_modules relative/src/secret.key  --copy-all
 ```
 
 ### Commands
@@ -42,6 +48,6 @@ backup-dir <source_dir> <target_dir> [options]
 
 `--preview` Doesn't change anything in the file system, just performs a preview.
 
-`--do-not-copy <filenames>` Excludes files and folders in the source that should not be copied.
+`--do-not-copy <glob_expressions>` Excludes files and folders in the source that should not be copied.
 
-`--do-not-delete <filenames>` Excludes files and folders in the destination to be replaced or deleted.
+`--do-not-delete <glob_expressions>` Excludes files and folders in the destination to be replaced or deleted.
