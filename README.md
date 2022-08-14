@@ -27,10 +27,10 @@ Test it without any risk in a preview:
 backup-dir C:\my-data E:\backup\my-data --preview
 ```
 
-Use of relative paths and multiple options:
+Use of relative paths, multiple options and log output to a file:
 
 ```bash
-backup-dir relative/src relative/target --do-not-copy **/*.env **/node_modules relative/src/secret.key  --copy-all
+backup-dir relative/src relative/target --do-not-copy **/*.env **/node_modules relative/src/secret.key --copy-all > out.txt
 ```
 
 ### Commands
